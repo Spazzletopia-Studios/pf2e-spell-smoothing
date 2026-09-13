@@ -490,3 +490,7 @@ spells carry no `system.heightening` data, that's why they need smoothing.
 Copy this folder to `Data/modules/pf2e-spell-smoothing` (or install the
 release zip), then enable it in the world's Manage Modules. Requires the
 `pf2e` system (≥ 8.0.0), Foundry 12–14. No library dependencies.
+
+## Get help
+
+[Get Help](https://github.com/Spazzletopia-Studios/spazzmods-support) — report a bug, get install help, ask a question, or suggest an idea.
