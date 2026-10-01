@@ -5,6 +5,9 @@ and more — plus turns poisons, diseases, and curses into real tracked
 effects instead of plain text. Built for the Pathfinder Second Edition
 system.
 
+Works on Foundry VTT 13 with PF2e 7.12.2 or later, and on Foundry VTT 14 with
+PF2e 8.x.
+
 ## Install
 
 **The easy way (Windows):** download the [SpazzMods Installer](https://github.com/Spazzletopia-Studios/spazzmods-installer/releases/latest),
@@ -357,6 +360,17 @@ A pf2e update changes the cache key, so the next GM login rebuilds by itself.
 modules no way to delete files, so the cache file for an old pf2e version just
 sits there (~1 MB) until you remove it by hand.
 
+### Source gate (development)
+
+`npm test` in `harness/` (`node harness/gate.mjs`) runs every source suite, one
+at a time. The suites that read PF2e files use `PF2E_SYSTEM_DIR` (default: the
+desktop install); run the gate once per supported line, a PF2e 7.12.2 folder
+and a PF2e 8.x folder. For a folder other than the default, the gate first
+makes that release's own spell dump and offline affliction build in a scratch
+folder. `harness/installed-smoke.mjs --url <server> --owner "<agent> / <task>"`
+checks an installed build on a running test server (13 or 14); take the
+Foundry-instance WRITE in the ledger first.
+
 ### Rebuilding the offline copy (development)
 
 ```
@@ -488,8 +502,15 @@ spells carry no `system.heightening` data, that's why they need smoothing.
 ## Install
 
 Copy this folder to `Data/modules/pf2e-spell-smoothing` (or install the
-release zip), then enable it in the world's Manage Modules. Requires the
-`pf2e` system (≥ 8.0.0), Foundry 12–14. No library dependencies.
+release zip), then enable it in the world's Manage Modules. No library
+dependencies.
+
+**Compatibility:** Foundry VTT 13 with PF2e 7.12.2 or later, and Foundry VTT
+14 with PF2e 8.x. PF2e 7.12.2 has fewer spells and spell effects than PF2e
+8.x: a smoothing applies a system spell effect only when your PF2e version has
+that same effect, and the parts it lacks are applied by hand there (see the
+1.24.0 notes in `CHANGELOG.md`). Everything that differs between the two
+versions lives in `scripts/compat.js`.
 
 ## Get help
 
